@@ -20,6 +20,9 @@ public class Recipe {
 
 	private boolean isPie;
 
+	@Transient
+	private int applicationPort;
+
 	public long getId() {
 		return id;
 	}
@@ -34,5 +37,13 @@ public class Recipe {
 
 	public boolean isPie() {
 		return isPie;
+	}
+
+	public int getApplicationPort() {
+		return applicationPort;
+	}
+
+	public void setApplicationPort(int applicationPort) {
+		this.applicationPort = applicationPort;
 	}
 }

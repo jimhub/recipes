@@ -13,6 +13,9 @@ import java.util.*;
 @Service
 public class RecipeService {
 
+	@Value("${server.port}")
+	private int serverPort;
+
 	@Autowired
 	private RecipeRepository recipeRepository;
 
@@ -20,6 +23,7 @@ public class RecipeService {
 		List<Recipe> recipes = new ArrayList<Recipe>();
 
 		for(Recipe recipe : recipeRepository.findAll()) {
+			recipe.setApplicationPort(serverPort);
 			recipes.add(recipe);
 		}
 
@@ -27,7 +31,9 @@ public class RecipeService {
 	}
 
 	public Recipe getRecipe(long id) {
-		return recipeRepository.findOne(id);
+		Recipe recipe = recipeRepository.findOne(id);
+		recipe.setApplicationPort(serverPort);
+		return recipe;
 	}
 
 	public List<Recipe> getPies() {
